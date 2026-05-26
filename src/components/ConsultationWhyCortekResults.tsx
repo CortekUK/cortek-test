@@ -226,7 +226,7 @@ const StatsGrid = ({ startIndex = 0, endIndex = 4 }: { startIndex?: number; endI
       value: 85,
       suffix: "%",
       label: "MEMBER ENGAGEMENT",
-      description: "Higher engagement through personalised CRM workflows."
+      description: "Higher engagement through personalized CRM workflows."
     },
     {
       icon: Clock,

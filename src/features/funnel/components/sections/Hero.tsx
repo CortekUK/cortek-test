@@ -1,84 +1,111 @@
+import { useState, useEffect, useRef } from "react";
 import { CalendlyButton } from "@/features/funnel/components/shared/CalendlyButton";
-import { ThemeToggle } from "@/features/funnel/components/shared/ThemeToggle";
 import { HERO_COPY } from "@/features/funnel/lib/constants";
-import { trackSecondaryCTA } from "@/features/funnel/lib/analytics";
+
+const HERO_TESTIMONIALS = [
+  {
+    quote: "Cortek built us a CRM that makes running the business so much easier. Everything is in one place now with jobs, quotes and client details all organized, and it\u2019s cut our admin time right down.",
+    name: "Adam Miller",
+    title: "Founder, AM Secure",
+    photo: "/funnel/images/adam-miller.jpg",
+  },
+  {
+    quote: "The new CRM fits our business perfectly. We can now manage clients, inventory and inquiries in one place. It\u2019s made everything far more organized and lets us focus on growing Lost In Time.",
+    name: "Carlito Graham",
+    title: "Founder, Lost In Time Jewellers",
+    photo: "/funnel/images/carlito-graham.jpg",
+  },
+  {
+    quote: "They understood our business from day one and built a CRM that handles every part of our car rental operation perfectly.",
+    name: "Sunny Singh",
+    title: "Director, RTech Car Rentals",
+    photo: "/funnel/images/sunny-singh.jpg",
+  },
+];
+
+const HERO_STATS = [
+  { value: "20+", label: "Businesses transformed" },
+  { value: "100+", label: "Tools replaced" },
+  { value: "4 weeks", label: "To live system", accent: true },
+];
+
 
 export function Hero() {
-  function handleSecondaryClick(e: React.MouseEvent) {
-    e.preventDefault();
-    trackSecondaryCTA("hero");
-    document.getElementById("dashboard-preview")?.scrollIntoView({ behavior: "smooth" });
+  // ── Snap-slide testimonial carousel ──
+  const [slideIdx, setSlideIdx] = useState(0);
+  const [canTransition, setCanTransition] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout>>();
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const [step, setStep] = useState(0);
+  const totalSlides = HERO_TESTIMONIALS.length; // 3
+
+  // Measure slide step distance (card width + gap)
+  useEffect(() => {
+    function measure() {
+      if (viewportRef.current) {
+        const w = viewportRef.current.clientWidth;
+        setStep(w * 0.85 + 12);
+      }
+    }
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
+  // Auto-advance every 6s
+  useEffect(() => {
+    if (isPaused || step === 0) return;
+    const id = setInterval(() => setSlideIdx((p) => p + 1), 6000);
+    return () => clearInterval(id);
+  }, [isPaused, step]);
+
+  // Cleanup resume timer
+  useEffect(() => {
+    return () => { if (resumeTimer.current) clearTimeout(resumeTimer.current); };
+  }, []);
+
+  // Infinite loop: when we land on the clone (index 3), snap back to 0 instantly
+  function handleTransitionEnd() {
+    if (slideIdx === totalSlides) {
+      setCanTransition(false);
+      setSlideIdx(0);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setCanTransition(true));
+      });
+    }
   }
 
-  function handleHowItWorksClick(e: React.MouseEvent) {
-    e.preventDefault();
-    trackSecondaryCTA("hero-nav");
-    document.getElementById("dashboard-preview")?.scrollIntoView({ behavior: "smooth" });
+  function handleCarouselEnter() {
+    setIsPaused(true);
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
   }
+
+  function handleCarouselLeave() {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => setIsPaused(false), 8000);
+  }
+
+  const dotIdx = slideIdx % totalSlides;
 
   return (
     <section
       id="hero"
-      className="relative flex flex-col px-4 sm:px-6 lg:px-8 overflow-hidden pb-16 sm:pb-20"
+      className="relative overflow-hidden"
+      style={{ backgroundColor: '#060A14' }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950 hero-gradient" />
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 hero-grid pointer-events-none" />
 
-      {/* Ambient background glows — more prominent on mobile where there are no floating icons */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] lg:w-[600px] lg:h-[400px] bg-brand-purple/10 lg:bg-brand-purple/6 rounded-full blur-[100px] lg:blur-[120px] pointer-events-none" />
-      <div className="absolute top-[50%] left-[30%] w-[250px] h-[250px] lg:w-[350px] lg:h-[300px] bg-brand-blue/8 lg:bg-brand-blue/5 rounded-full blur-[80px] lg:blur-[100px] pointer-events-none" />
-      <div className="absolute top-[65%] right-0 w-[200px] h-[200px] lg:hidden bg-brand-purple/8 rounded-full blur-[80px] pointer-events-none" />
+      {/* Bottom fade — smooth transition into next section */}
+      <div className="hero-bottom-fade" />
 
-      <div className="hidden lg:block pointer-events-none" aria-hidden="true">
-        {[
-          { label: "WhatsApp",        x: "9%",  y: "10%", delay: 0,   src: "/funnel/icons/whatsapp.svg" },
-          { label: "Calendly",        x: "27%", y: "12%", delay: 2,   src: "/funnel/icons/calendly.svg", iconSize: "w-12 h-12" },
-          { label: "Asana",           x: "72%", y: "14%", delay: 3.5, src: "/funnel/icons/asana.svg" },
-          { label: "Loom",            x: "84%", y: "14%", delay: 1,   src: "/funnel/icons/loom.svg" },
-          { label: "OpenAI",          x: "3%",  y: "32%", delay: 1.5, src: "/funnel/icons/openai.svg", darkSrc: "/funnel/icons/openai-dark.svg" },
-          { label: "Stripe",          x: "93%", y: "24%", delay: 3,   icon: <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.849-6.591-7.305z" fill="#635BFF" /> },
-          { label: "Gmail",           x: "7%",  y: "54%", delay: 3.5, src: "/funnel/icons/gmail.svg" },
-          { label: "Sheets",          x: "83%", y: "44%", delay: 4,   src: "/funnel/icons/sheets.svg" },
-          { label: "Excel",           x: "18%", y: "48%", delay: 0.5, src: "/funnel/icons/excel.svg" },
-          { label: "Claude",          x: "4%",  y: "74%", delay: 4.5, src: "/funnel/icons/claude.svg" },
-          { label: "Google Calendar", x: "18%", y: "78%", delay: 2.5, src: "/funnel/icons/calendar.svg" },
-          { label: "Twilio",          x: "79%", y: "74%", delay: 4.5, src: "/funnel/icons/twilio.svg" },
-          { label: "Shopify",         x: "93%", y: "72%", delay: 5,   src: "/funnel/icons/shopify.svg" },
-        ].map((item) => (
-          <div
-            key={item.label}
-            className="absolute"
-            style={{
-              left: item.x,
-              top: item.y,
-              animation: `hero-icon-float ${16 + item.delay * 2}s ease-in-out infinite ${item.delay}s`,
-            }}
-          >
-            <div className="hero-icon-card w-[68px] h-[68px] rounded-2xl bg-navy-800/50 backdrop-blur-sm border border-navy-600/25 flex items-center justify-center opacity-[0.75]">
-              {"darkSrc" in item && item.darkSrc ? (
-                <>
-                  <img src={item.darkSrc} alt="" width={36} height={36} className="w-9 h-9 object-contain icon-dark-only" />
-                  <img src={item.src} alt="" width={36} height={36} className="w-9 h-9 object-contain icon-light-only" />
-                </>
-              ) : "src" in item && item.src ? (
-                <img src={item.src} alt="" width={36} height={36} className={`${"iconSize" in item && item.iconSize ? item.iconSize : "w-9 h-9"} object-contain`} />
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="none"
-                >
-                  {"icon" in item && item.icon}
-                </svg>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Animated gradient orbs */}
+      <div className="hero-orb-primary" />
+      <div className="hero-orb-secondary" />
 
-      <div className="relative max-w-5xl mx-auto w-full flex items-center justify-between h-20">
+      {/* Logo only — no nav, no toggle */}
+      <div className="relative max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10">
         <img
           src="/funnel/logo.svg"
           alt="Cortek"
@@ -86,80 +113,125 @@ export function Hero() {
           height={26}
           className="h-7 w-auto"
         />
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <a
-            href="#dashboard-preview"
-            onClick={handleHowItWorksClick}
-            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl border border-brand-purple bg-transparent text-brand-purple hover:bg-brand-purple/10 font-semibold transition-all text-sm cursor-pointer"
-          >
-            How it works
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
       </div>
 
-      <div className="relative flex-1 flex items-center justify-center pt-12 sm:pt-18 pb-6">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-brand-purple/20 bg-brand-purple/5 mb-7">
-            <span className="text-[11px] sm:text-xs uppercase tracking-[0.15em] text-brand-purple-light font-semibold">
-              Custom CRM &middot; AI &middot; Automation
-            </span>
-          </div>
+      {/* Hero content */}
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-28">
+        <div className="max-w-3xl">
+            <p className="text-[14px] sm:text-[15px] tracking-wide mb-1">
+              Custom systems built in <span className="text-brand-cyan font-semibold">4&nbsp;weeks</span> — <span className="text-white font-semibold">or your money back.</span>
+            </p>
+            <p className="text-[12px] text-slate-500 tracking-wide mb-1.5">
+              Trusted by <span className="text-brand-cyan font-semibold">20+</span> businesses across the US, UK &amp; UAE
+            </p>
+            <div className="w-16 h-[2px] bg-gradient-to-r from-brand-cyan/60 to-brand-cyan/0 mb-5" />
 
-          <h1 className="text-[1.65rem] sm:text-[2.1rem] lg:text-[2.5rem] font-bold text-foreground leading-[1.2] mb-5">
-            {HERO_COPY.headline}
-          </h1>
+            <div className="relative">
+              <div className="absolute -inset-x-12 -inset-y-6 bg-gradient-radial from-brand-purple/8 via-brand-purple/3 to-transparent rounded-full blur-2xl pointer-events-none" />
+              <h1 className="relative text-[2.5rem] sm:text-[3.25rem] lg:text-[4.5rem] xl:text-[5.5rem] font-bold text-white tracking-tight mb-6" style={{ lineHeight: '1.05' }}>
+              Stop running your business across{' '}
+              <span className="text-brand-purple-light">12&nbsp;tools.</span>
+            </h1>
+            </div>
 
-          <p className="text-[15px] sm:text-base text-slate-400 leading-relaxed mb-9 max-w-xl mx-auto">
-            {HERO_COPY.subheadline}
-          </p>
+            <p className="text-lg sm:text-xl lg:text-[22px] leading-[1.5] mb-4 max-w-xl" style={{ color: 'rgba(255, 255, 255, 0.88)' }}>
+              We replace your scattered tools with one custom system, built around how your business actually runs.
+            </p>
+            <p className="text-xl sm:text-2xl lg:text-[28px] font-bold text-white mb-10">
+              Live in <span className="text-brand-purple-light">4&nbsp;weeks.</span>{' '}
+              <span className="border-b-2 border-brand-cyan/40">Guaranteed.</span>
+            </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            {/* Stats strip */}
+            <div className="flex items-start max-w-md mb-10">
+              {HERO_STATS.map((stat, i) => (
+                <div
+                  key={stat.label}
+                  className={`flex-1 text-center ${i > 0 ? 'border-l border-navy-700/60' : ''}`}
+                >
+                  <div className={`text-[28px] sm:text-[34px] font-bold leading-none mb-1.5 ${stat.accent ? 'text-brand-cyan' : 'text-white'}`}>
+                    {stat.value}
+                  </div>
+                  <div className="text-[11px] text-slate-500 leading-snug">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA — big, commanding */}
             <CalendlyButton
               text={HERO_COPY.cta}
               section="hero"
               size="lg"
-              className="px-7 py-3.5 text-[15px] shadow-lg shadow-brand-purple/20 hover:shadow-xl hover:shadow-brand-purple/25"
+              className="!px-12 !py-5 !text-lg !rounded-2xl shadow-xl shadow-brand-purple/25 hover:shadow-2xl hover:shadow-brand-purple/35"
             />
-            <a
-              href="#dashboard-preview"
-              className="inline-flex items-center gap-1.5 px-5 py-3.5 rounded-xl border border-navy-600 bg-navy-800/50 text-slate-300 hover:text-white hover:border-brand-purple/30 hover:bg-navy-700/50 font-medium transition-all text-[15px]"
-              onClick={handleSecondaryClick}
-            >
-              {HERO_COPY.secondaryCta}
-              <span className="text-brand-purple-light">&rarr;</span>
-            </a>
-          </div>
+            <p className="mt-4 text-sm text-slate-500">{HERO_COPY.supporting}</p>
 
-          <p className="mt-5 text-sm text-slate-500">{HERO_COPY.supporting}</p>
-        </div>
-      </div>
-
-      <div className="relative max-w-4xl mx-auto w-full pt-8">
-        <p className="text-center text-sm font-medium text-slate-400 mb-5 tracking-wide">
-          What you&apos;ll leave with
-        </p>
-
-        <div className="grid sm:grid-cols-3 gap-3">
-          {[
-            { num: "01", title: "Workflow map", desc: "See how leads, tasks and follow-ups move through your business." },
-            { num: "02", title: "Bottleneck review", desc: "Find where work gets lost, delayed or repeated manually." },
-            { num: "03", title: "First-build recommendation", desc: "Know the most valuable system to build first." },
-          ].map((item) => (
+            {/* Testimonial carousel — snap-slide auto-advance */}
             <div
-              key={item.num}
-              className="glass-card rounded-xl px-4 py-3 card-surface border border-navy-700/40"
+              ref={viewportRef}
+              className="mt-10 max-w-md overflow-hidden"
+              onPointerEnter={handleCarouselEnter}
+              onPointerLeave={handleCarouselLeave}
             >
-              <div className="flex items-center gap-2.5 mb-1.5">
-                <span className="flex items-center justify-center w-6 h-6 rounded-md bg-brand-purple/10 text-brand-purple text-[10px] font-bold shrink-0">
-                  {item.num}
-                </span>
-                <h4 className="text-sm font-bold text-foreground">{item.title}</h4>
+              {/* Sliding track: 3 real cards + 1 clone for seamless loop */}
+              <div
+                className="flex"
+                style={{
+                  gap: '12px',
+                  transform: `translateX(-${slideIdx * step}px)`,
+                  transition: canTransition ? 'transform 600ms ease-in-out' : 'none',
+                }}
+                onTransitionEnd={handleTransitionEnd}
+              >
+                {[...HERO_TESTIMONIALS, HERO_TESTIMONIALS[0]].map((t, i) => (
+                  <div
+                    key={`slide-${i}`}
+                    className="flex-shrink-0 rounded-2xl bg-navy-800/30 border border-navy-700/40 p-5 testimonial-card overflow-hidden"
+                    style={{ width: '85%' }}
+                  >
+                    <div className="flex gap-0.5 mb-3">
+                      {Array.from({ length: 5 }).map((_, j) => (
+                        <svg key={j} className="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="text-[14px] leading-relaxed mb-4" style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
+                      &ldquo;{t.quote}&rdquo;
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={t.photo}
+                        alt={t.name}
+                        className="w-11 h-11 rounded-full object-cover object-[center_20%] shrink-0 border-2 border-navy-700/50"
+                      />
+                      <div>
+                        <p className="text-sm font-semibold text-white leading-tight">{t.name}</p>
+                        <p className="text-xs text-slate-300 leading-tight mt-0.5">{t.title}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+
+              {/* Dot indicators */}
+              <div className="flex justify-start gap-3 mt-6 mb-2">
+                {HERO_TESTIMONIALS.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setCanTransition(true); setSlideIdx(i); }}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      dotIdx === i
+                        ? 'bg-brand-cyan shadow-[0_0_10px_rgba(34,211,238,0.5),0_0_20px_rgba(34,211,238,0.2)]'
+                        : 'bg-white/30 hover:bg-white/50'
+                    }`}
+                    aria-label={`Testimonial ${i + 1}`}
+                  />
+                ))}
+              </div>
             </div>
-          ))}
         </div>
       </div>
     </section>

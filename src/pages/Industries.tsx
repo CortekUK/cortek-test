@@ -48,7 +48,7 @@ const testimonials = [
     role: "Fitness Center Owner",
   },
   {
-    text: "Outstanding support team! They guided us through every step and continue to help us optimise our operations. Couldn't be happier.",
+    text: "Outstanding support team! They guided us through every step and continue to help us optimize our operations. Couldn't be happier.",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&h=150&q=80",
     name: "Emma Rodriguez",
     role: "Operations Director",
@@ -121,7 +121,7 @@ const mainIndustries = [
   {
     icon: UtensilsCrossed,
     title: "Restaurants",
-    description: "Streamline reservations, orders, and customer loyalty programmes with a system tailored to your venue.",
+    description: "Streamline reservations, orders, and customer loyalty programs with a system tailored to your venue.",
     gradient: "from-green-500/20 to-emerald-500/20",
     useCase: "Example: A customer makes a reservation for 6 people online, your CRM automatically allocates the table, sends confirmation, and notifies your kitchen team."
   },
@@ -163,7 +163,7 @@ const mainIndustries = [
   {
     icon: Building2,
     title: "Other Businesses",
-    description: "Every business is unique — Cortek builds CRM systems that adapt to your processes and integrate your favourite tools.",
+    description: "Every business is unique — Cortek builds CRM systems that adapt to your processes and integrate your favorite tools.",
     gradient: "from-deep-purple/20 to-electric-blue/20",
     useCase: "Example: Whether you run a logistics company or creative studio, your CRM adapts to your workflow — integrating tools you already use and automating repetitive tasks."
   }
@@ -175,7 +175,7 @@ const extendedIndustries = [
     title: "Cafés & Coffee Shops",
     description: "Manage loyalty schemes, bookings, and day-to-day operations with ease.",
     gradient: "from-amber-500/20 to-brown-500/20",
-    useCase: "Example: Customers scan a QR code to join your loyalty program, earn points automatically with each purchase, and receive a personalised birthday discount via email."
+    useCase: "Example: Customers scan a QR code to join your loyalty program, earn points automatically with each purchase, and receive a personalized birthday discount via email."
   },
   {
     icon: Palette,
@@ -189,7 +189,7 @@ const extendedIndustries = [
     title: "Event Management",
     description: "Automate invites, check-ins, and attendee records — all within your CRM system.",
     gradient: "from-teal-500/20 to-green-500/20",
-    useCase: "Example: Send personalised event invitations, track RSVPs automatically, manage check-ins via QR codes, and send follow-up surveys to all attendees after the event."
+    useCase: "Example: Send personalized event invitations, track RSVPs automatically, manage check-ins via QR codes, and send follow-up surveys to all attendees after the event."
   },
   {
     icon: Camera,
@@ -203,7 +203,7 @@ const extendedIndustries = [
     title: "Hair & Beauty Salons",
     description: "Keep your chairs full with appointment scheduling and automated reminders.",
     gradient: "from-rose-500/20 to-pink-500/20",
-    useCase: "Example: Clients book appointments online viewing real-time availability, receive automatic reminders 24 hours before, and your system tracks their service history for personalised recommendations."
+    useCase: "Example: Clients book appointments online viewing real-time availability, receive automatic reminders 24 hours before, and your system tracks their service history for personalized recommendations."
   },
   {
     icon: Home,

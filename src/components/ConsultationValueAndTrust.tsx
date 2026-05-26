@@ -43,7 +43,7 @@ const ConsultationValueAndTrust = () => {
     {
       icon: FileCheck2,
       title: "Tailored Action Plan",
-      description: "Receive a custom roadmap with prioritised steps and recommended integrations.",
+      description: "Receive a custom roadmap with prioritized steps and recommended integrations.",
     },
     {
       icon: Gauge,
@@ -200,7 +200,7 @@ const ConsultationValueAndTrust = () => {
             {/* Subtext */}
             <p className="text-base md:text-lg text-foreground-secondary mb-8 leading-relaxed">
               Our consultation is completely free with no obligation. Even if you decide not to proceed, 
-              you'll walk away with valuable insights about optimising your business with a custom CRM.
+              you'll walk away with valuable insights about optimizing your business with a custom CRM.
             </p>
 
             {/* Trust points - Stagger in */}

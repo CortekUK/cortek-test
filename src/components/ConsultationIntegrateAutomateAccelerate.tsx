@@ -102,7 +102,7 @@ const ConsultationIntegrateAutomateAccelerate = () => {
             </span>
           </h2>
           <p className="text-lg text-foreground-secondary max-w-3xl mx-auto">
-            Seamlessly connect your favourite tools and see how CORTEK automates day-to-day operations — smarter, faster, and effortlessly.
+            Seamlessly connect your favorite tools and see how CORTEK automates day-to-day operations — smarter, faster, and effortlessly.
           </p>
         </motion.div>
 

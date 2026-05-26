@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useTheme } from "next-themes";
 import { Helmet } from "react-helmet-async";
 import { QualificationProvider } from "@/features/funnel/contexts/QualificationContext";
 import { AuditQualificationOverlay } from "@/features/funnel/components/qualification/AuditQualificationOverlay";
@@ -7,13 +6,9 @@ import { StickyHeader } from "@/features/funnel/components/layout/StickyHeader";
 import { Footer } from "@/features/funnel/components/layout/Footer";
 import { Hero } from "@/features/funnel/components/sections/Hero";
 import { DashboardPreview } from "@/features/funnel/components/sections/DashboardPreview";
-import { PainPoints } from "@/features/funnel/components/sections/PainPoints";
-import { Testimonials } from "@/features/funnel/components/sections/Testimonials";
-import { MidPageCTA } from "@/features/funnel/components/sections/MidPageCTA";
-import { Services } from "@/features/funnel/components/sections/Services";
-import { Integrations } from "@/features/funnel/components/sections/Integrations";
+import { QualificationSection } from "@/features/funnel/components/sections/QualificationSection";
+import { GuaranteeSection } from "@/features/funnel/components/sections/GuaranteeSection";
 import { HowItWorks } from "@/features/funnel/components/sections/HowItWorks";
-import { FAQ } from "@/features/funnel/components/sections/FAQ";
 import { FinalCTA } from "@/features/funnel/components/sections/FinalCTA";
 import { captureUtmParams } from "@/features/funnel/lib/utm";
 import { SITE_CONFIG } from "@/features/funnel/lib/constants";
@@ -27,13 +22,6 @@ interface GetStartedProps {
 }
 
 export default function GetStarted({ showQuiz = false }: GetStartedProps = {}) {
-  const { resolvedTheme } = useTheme();
-
-  // Sync funnel-light class on .funnel-root from next-themes
-  useEffect(() => {
-    document.querySelector(".funnel-root")?.classList.toggle("funnel-light", resolvedTheme === "light");
-  }, [resolvedTheme]);
-
   useEffect(() => {
     captureUtmParams();
 
@@ -77,14 +65,13 @@ export default function GetStarted({ showQuiz = false }: GetStartedProps = {}) {
         <StickyHeader />
         <main>
           <Hero />
+          <div className="section-divider" />
           <DashboardPreview />
-          <PainPoints />
-          <Testimonials />
-          <MidPageCTA />
-          <Services />
-          <Integrations />
+          <div className="section-divider" />
+          <QualificationSection />
+          <GuaranteeSection />
+          <div className="section-divider" />
           <HowItWorks />
-          <FAQ />
           <FinalCTA />
         </main>
         <Footer />

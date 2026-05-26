@@ -16,7 +16,7 @@ export const GHL_WEBHOOK_URL =
 export const BOOKING_WIDGET_URL = "https://api.leadconnectorhq.com/widget/booking/LZhNiR0u2zx1yGEU45Kr";
 
 export const HERO_COPY = {
-  headline: "Stop running your business across 12 tabs.",
+  headline: "Stop running your business across 12 tools.",
   subheadline:
     "We replace scattered tools and missed follow-ups with one bespoke system, built around how you actually work.",
   cta: "Get your free workflow review",
@@ -78,6 +78,12 @@ export const STEPS: Step[] = [
     title: "Recommend the first build",
     description:
       "We show the CRM module, automation or AI assistant that would create the most value first.",
+  },
+  {
+    number: "04",
+    title: "Live system in 4 weeks",
+    description:
+      "Once you say yes, we move. Most clients are running their custom system live in production within 4 weeks of kickoff.",
   },
 ];
 
@@ -209,7 +215,7 @@ export const QUALIFICATION_STEPS: QualificationStepConfig[] = [
 export const FINAL_CTA_COPY = {
   headline: "Ready to find the first system your business actually needs?",
   subheadline:
-    "Start the free workflow review and we’ll map where your workflow is leaking time, leads and manual effort.",
+    "We'll map where your workflow is leaking time, leads, and effort. Then build the fix.",
   cta: "Get your free workflow review",
   supporting: "Free 20-minute workflow review. No pressure. No commitment.",
 };

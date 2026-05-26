@@ -85,7 +85,7 @@ const metrics = [
     value: 85,
     suffix: "%",
     label: "Member Engagement",
-    description: "Increase in customer and team interaction through personalised CRM workflows."
+    description: "Increase in customer and team interaction through personalized CRM workflows."
   },
   {
     icon: Clock,

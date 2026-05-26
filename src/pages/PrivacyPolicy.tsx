@@ -79,7 +79,7 @@ const PrivacyPolicy = () => {
             <section>
               <h2 className="text-2xl font-semibold text-foreground mb-4">7. International Transfers</h2>
               <p className="text-foreground-secondary leading-relaxed">
-                Cortek operates from the UK and may transfer data internationally to deliver services to clients and end users worldwide. Where data is transferred outside the UK or EEA, appropriate safeguards are implemented such as Standard Contractual Clauses or equivalent protections recognised under UK and EU data protection law.
+                Cortek operates from the UK and may transfer data internationally to deliver services to clients and end users worldwide. Where data is transferred outside the UK or EEA, appropriate safeguards are implemented such as Standard Contractual Clauses or equivalent protections recognized under UK and EU data protection law.
               </p>
             </section>
 
@@ -93,7 +93,7 @@ const PrivacyPolicy = () => {
             <section>
               <h2 className="text-2xl font-semibold text-foreground mb-4">9. Data Security</h2>
               <p className="text-foreground-secondary leading-relaxed">
-                We use appropriate technical and organisational measures to protect personal data. However, no online service is completely secure, and we cannot guarantee absolute security.
+                We use appropriate technical and organizational measures to protect personal data. However, no online service is completely secure, and we cannot guarantee absolute security.
               </p>
             </section>
 
@@ -138,7 +138,7 @@ const PrivacyPolicy = () => {
             <section>
               <h2 className="text-2xl font-semibold text-foreground mb-4">13. Cookies &amp; Analytics</h2>
               <p className="text-foreground-secondary leading-relaxed">
-                Cortek may use cookies and similar technologies to enhance website functionality and analyse usage. Essential cookies are required for the site to function. Analytics and tracking cookies are used only with your consent. You can control or disable cookies through your browser settings.
+                Cortek may use cookies and similar technologies to enhance website functionality and analyze usage. Essential cookies are required for the site to function. Analytics and tracking cookies are used only with your consent. You can control or disable cookies through your browser settings.
               </p>
             </section>
 

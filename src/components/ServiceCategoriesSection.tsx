@@ -34,8 +34,8 @@ const serviceCategories = [{
   textColor: "#1F2937"
 }, {
   title: "Customer Engagement",
-  description: "Build lasting relationships through personalised communication and automated touchpoints. Cortek CRMs keep customers informed, engaged, and coming back — across email, SMS, and social channels.",
-  features: ["Automated WhatsApp & SMS messaging", "Customer journey mapping", "Social media scheduling", "Personalised promotions"],
+  description: "Build lasting relationships through personalized communication and automated touchpoints. Cortek CRMs keep customers informed, engaged, and coming back — across email, SMS, and social channels.",
+  features: ["Automated WhatsApp & SMS messaging", "Customer journey mapping", "Social media scheduling", "Personalized promotions"],
   image: operationsAutomationImg,
   icon: Users,
   tag: "engagement",
@@ -46,7 +46,7 @@ const serviceCategories = [{
   isDynamic: true
 }, {
   title: "Bespoke Solutions",
-  description: "Every business is unique — your CRM should be too. From advanced integrations to industry-specific tools, Cortek develops fully customised systems that fit your exact workflow.",
+  description: "Every business is unique — your CRM should be too. From advanced integrations to industry-specific tools, Cortek develops fully customized systems that fit your exact workflow.",
   features: ["Bespoke integrations", "Advanced CRM features", "Industry-specific modules", "Custom development"],
   image: allSolutionsImg,
   icon: Sparkles,

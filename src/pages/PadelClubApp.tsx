@@ -67,9 +67,9 @@ const testimonials = [{
   initials: "JM"
 }, {
   headline: "Player engagement is up and admin time is way down.",
-  body: "Automation handles reminders, rankings, and results. Members love the QR system — everything feels more professional and organised.",
+  body: "Automation handles reminders, rankings, and results. Members love the QR system — everything feels more professional and organized.",
   author: "Sarah T.",
-  role: "Padel Centre Owner",
+  role: "Padel Center Owner",
   location: "UK",
   initials: "ST"
 }, {

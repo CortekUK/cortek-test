@@ -37,7 +37,7 @@ export function CookieConsent() {
       )}
     >
       <p className="text-xs text-slate-400 mb-2 leading-relaxed">
-        We use cookies to analyse traffic.{" "}
+        We use cookies to analyze traffic.{" "}
         <a href="/privacy-policy" className="text-brand-blue underline underline-offset-2 hover:text-brand-blue-light">
           Privacy Policy
         </a>

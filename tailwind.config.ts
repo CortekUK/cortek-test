@@ -47,6 +47,9 @@ export default {
 					DEFAULT: '#2d81f7',
 					light: '#4c92f7',
 				},
+			'brand-cyan': {
+					DEFAULT: '#4DD4FF',
+				},
 				gold: { 400: '#fbbf24' },
 				'on-brand': '#ffffff',
 				border: 'hsl(var(--border))',

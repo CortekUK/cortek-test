@@ -42,7 +42,7 @@ const CookieConsent = () => {
               Cookie Preferences
             </h3>
             <p className="text-sm text-foreground/70 leading-relaxed mb-3">
-              We use cookies to improve your browsing experience and analyse
+              We use cookies to improve your browsing experience and analyze
               site traffic. By continuing, you agree to our use of cookies.
             </p>
             

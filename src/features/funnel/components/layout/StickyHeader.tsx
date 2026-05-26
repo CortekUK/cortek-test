@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { ThemeToggle } from "@/features/funnel/components/shared/ThemeToggle";
 import { trackSecondaryCTA } from "@/features/funnel/lib/analytics";
 import { cn } from "@/features/funnel/lib/utils";
 
@@ -17,7 +16,7 @@ export function StickyHeader() {
   function handleHowItWorksClick(e: React.MouseEvent) {
     e.preventDefault();
     trackSecondaryCTA("sticky-header");
-    document.getElementById("dashboard-preview")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
@@ -38,9 +37,8 @@ export function StickyHeader() {
           className="h-6 w-auto"
         />
         <div className="flex items-center gap-3">
-          <ThemeToggle />
           <a
-            href="#dashboard-preview"
+            href="#how-it-works"
             onClick={handleHowItWorksClick}
             className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl border border-brand-purple bg-transparent text-brand-purple hover:bg-brand-purple/10 font-semibold transition-all text-sm cursor-pointer"
           >

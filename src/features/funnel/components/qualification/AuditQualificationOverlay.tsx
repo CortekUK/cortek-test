@@ -179,7 +179,7 @@ export function AuditQualificationOverlay() {
   return (
     <div className="fixed inset-0 z-50 bg-navy-950/90 backdrop-blur-lg overlay-enter flex items-center justify-center p-3 sm:p-6">
       <div className="audit-panel relative w-full max-w-[720px] max-h-[92vh] bg-navy-900 border border-navy-700/50 rounded-2xl shadow-2xl shadow-black/40 flex flex-col overflow-hidden">
-        <div className="absolute -inset-px rounded-2xl pointer-events-none" style={{ padding: "1px", background: "linear-gradient(135deg, rgba(106,56,194,0.15), rgba(45,129,247,0.08), rgba(106,56,194,0.12))", mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)", WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)", maskComposite: "exclude", WebkitMaskComposite: "xor" }} />
+        <div className="absolute -inset-px rounded-2xl pointer-events-none" style={{ padding: "1px", background: "linear-gradient(135deg, rgba(124,58,237,0.15), rgba(45,129,247,0.08), rgba(124,58,237,0.12))", mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)", WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)", maskComposite: "exclude", WebkitMaskComposite: "xor" }} />
 
         {showHeader && (
           <div className="relative z-10 px-4 sm:px-6 pt-4 pb-3 border-b border-navy-700/40">

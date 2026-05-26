@@ -3,7 +3,7 @@ import { SectionWrapper } from "@/features/funnel/components/ui/SectionWrapper";
 const testimonials: { quote: string; name: string; title: string; company: string; industry: string; photo: string }[] = [
   {
     quote:
-      "Cortek built us a CRM that makes running the business so much easier. Everything is in one place now with jobs, quotes and client details all organised, and it’s cut our admin time right down.",
+      "Cortek built us a CRM that makes running the business so much easier. Everything is in one place now with jobs, quotes and client details all organized, and it’s cut our admin time right down.",
     name: "Adam Miller",
     title: "Founder",
     company: "AM Secure",
@@ -12,7 +12,7 @@ const testimonials: { quote: string; name: string; title: string; company: strin
   },
   {
     quote:
-      "The new CRM fits our business perfectly. We can now manage clients, inventory and enquiries in one place. It’s made everything far more organised and lets us focus on growing Lost In Time.",
+      "The new CRM fits our business perfectly. We can now manage clients, inventory and inquiries in one place. It's made everything far more organized and lets us focus on growing Lost In Time.",
     name: "Carlito Graham",
     title: "Founder",
     company: "Lost In Time",
@@ -42,7 +42,7 @@ export function Testimonials() {
           What our clients&nbsp;<span className="gradient-text">say</span>
         </h2>
         <p className="text-slate-400 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
-          Real businesses using Cortek systems to organise workflows, reduce
+          Real businesses using Cortek systems to organize workflows, reduce
           admin and manage operations in one place.
         </p>
       </div>

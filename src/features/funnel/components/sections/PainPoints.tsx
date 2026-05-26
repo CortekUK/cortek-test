@@ -88,10 +88,10 @@ export function PainPoints() {
               <defs>
                 <linearGradient id="flow-red" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#f87171" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#6a38c2" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#7C3AED" stopOpacity="0.35" />
                 </linearGradient>
                 <linearGradient id="flow-blue" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#6a38c2" stopOpacity="0.35" />
+                  <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.35" />
                   <stop offset="100%" stopColor="#2d81f7" stopOpacity="0.4" />
                 </linearGradient>
                 <filter id="flow-glow">
@@ -156,8 +156,8 @@ export function PainPoints() {
               style={{
                 left: "calc(50% + 32px)",
                 width: flowVisible ? "48px" : "0px",
-                background: "linear-gradient(to right, rgba(106, 56, 194, 0.5), rgba(45, 129, 247, 0.6))",
-                boxShadow: "0 0 6px rgba(45, 129, 247, 0.3), 0 0 12px rgba(106, 56, 194, 0.15)",
+                background: "linear-gradient(to right, rgba(124, 58, 237, 0.5), rgba(45, 129, 247, 0.6))",
+                boxShadow: "0 0 6px rgba(45, 129, 247, 0.3), 0 0 12px rgba(124, 58, 237, 0.15)",
                 transition: "width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s",
                 animation: flowVisible ? "line-glow-pulse 3s ease-in-out 2s infinite" : "none",
               }}
@@ -167,7 +167,7 @@ export function PainPoints() {
               className="relative z-10 w-16 h-16 rounded-2xl bg-navy-800/90 backdrop-blur-sm border border-brand-purple/25 flex items-center justify-center"
               style={{
                 boxShadow: flowVisible
-                  ? "0 0 24px rgba(106, 56, 194, 0.3), 0 0 48px rgba(106, 56, 194, 0.12), 0 4px 12px rgba(0, 0, 0, 0.15)"
+                  ? "0 0 24px rgba(124, 58, 237, 0.3), 0 0 48px rgba(124, 58, 237, 0.12), 0 4px 12px rgba(0, 0, 0, 0.15)"
                   : "none",
                 opacity: flowVisible ? 1 : 0,
                 transform: flowVisible ? "scale(1)" : "scale(0.8)",

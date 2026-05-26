@@ -12,7 +12,7 @@ const ConsultationTestimonial = () => {
   // First 3 testimonials (always visible) - from homepage
   const initialTestimonials = [
     {
-      quote: "CORTEK built us a CRM that makes running the business so much easier. Everything is in one place now with jobs, quotes, and client details all organised, and it's cut our admin time right down.",
+      quote: "CORTEK built us a CRM that makes running the business so much easier. Everything is in one place now with jobs, quotes, and client details all organized, and it's cut our admin time right down.",
       image: adamMillerAvatar,
       name: "Adam Miller",
       position: "Director",
@@ -21,7 +21,7 @@ const ConsultationTestimonial = () => {
       initials: "AM",
     },
     {
-      quote: "The new CRM fits our business perfectly. We can now manage clients, inventory, and enquiries in one place. It's made everything far more organised and lets us focus on growing Lost In Time.",
+      quote: "The new CRM fits our business perfectly. We can now manage clients, inventory, and inquiries in one place. It's made everything far more organized and lets us focus on growing Lost In Time.",
       image: carlitoGrahamAvatar,
       name: "Carlito Graham",
       position: "Founder",

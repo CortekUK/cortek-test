@@ -46,7 +46,7 @@ const PricingPackages = () => {
             <div className="w-20 md:w-24 h-1 bg-deep-purple mx-auto mb-4 md:mb-6 rounded-full"></div>
             <p className="text-base sm:text-lg md:text-xl text-foreground-secondary max-w-3xl mx-auto px-4">
               Tailored CRM systems built around your workflows. Pricing is based on your goals, integrations, 
-              and team size — ensuring you only pay for what your business truly needs. Book a consultation for a personalised proposal.
+              and team size — ensuring you only pay for what your business truly needs. Book a consultation for a personalized proposal.
             </p>
           </div>
 
@@ -156,7 +156,7 @@ const PricingPackages = () => {
                 </h3>
                 
                 <p className="text-lg text-foreground-secondary mb-8 max-w-2xl mx-auto">
-                  We're developing standardised CRM packages for specific industries — giving small and growing businesses 
+                  We're developing standardized CRM packages for specific industries — giving small and growing businesses 
                   access to Cortek's proven systems at an affordable price.
                 </p>
                 
@@ -166,7 +166,7 @@ const PricingPackages = () => {
                 </p>
                 
                 <p className="text-lg text-foreground-secondary mb-8 max-w-2xl mx-auto">
-                  In the meantime, book a consultation to explore how we can customise a solution for your business today.
+                  In the meantime, book a consultation to explore how we can customize a solution for your business today.
                 </p>
 
                 <div className="space-y-4 mb-8 max-w-md mx-auto">

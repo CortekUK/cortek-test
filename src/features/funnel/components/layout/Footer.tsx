@@ -5,8 +5,6 @@ export function Footer() {
 
   return (
     <footer className="pt-6 pb-8 px-4 sm:px-6 lg:px-8">
-      <div className="section-divider mb-6" />
-
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center gap-3 text-center">
           <img

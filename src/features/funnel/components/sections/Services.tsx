@@ -29,7 +29,7 @@ export function Services() {
         className={cn("grid lg:grid-cols-[1fr,1fr] gap-10 lg:gap-14 items-start max-w-5xl mx-auto", isVisible && "is-visible")}
       >
         <div className="lg:sticky lg:top-32">
-          <span className="text-[11px] uppercase tracking-[0.15em] text-brand-purple-light font-semibold mb-3 block">
+          <span className="text-[11px] uppercase tracking-[0.15em] text-brand-cyan font-semibold mb-3 block">
             Custom system modules
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 leading-tight">
