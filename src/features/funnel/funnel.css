@@ -1,0 +1,374 @@
+/*
+ * Funnel-scoped styles. Everything inside .funnel-root re-creates the
+ * design tokens, animations and helpers used by the cortekfunnel app.
+ * Light-mode variants are scoped to .funnel-root.funnel-light so they
+ * never escape the /get-started route.
+ */
+
+.funnel-root {
+  /* Override cortek-1's foreground HSL so Tailwind's text-foreground utility
+     produces white inside the funnel by default. */
+  --foreground: 0 0% 100%;
+
+  /* Funnel design tokens (dark by default) */
+  --color-navy-950: #0a0f1e;
+  --color-navy-900: #0f1629;
+  --color-navy-800: #151d38;
+  --color-navy-700: #1e2a4a;
+  --color-navy-600: #2a3a5c;
+  --color-brand-purple: #6a38c2;
+  --color-brand-purple-light: #7c4ad4;
+  --color-brand-blue: #2d81f7;
+  --color-brand-blue-light: #4c92f7;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-red-400: #f87171;
+  --color-gold-400: #fbbf24;
+  --color-white: #ffffff;
+  --color-foreground: #ffffff;
+  --color-on-brand: #ffffff;
+  --funnel-font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* RGB channels for Tailwind opacity modifier support */
+  --navy-950-rgb: 10 15 30;
+  --navy-900-rgb: 15 22 41;
+  --navy-800-rgb: 21 29 56;
+  --navy-700-rgb: 30 42 74;
+  --navy-600-rgb: 42 58 92;
+  --slate-300-rgb: 203 213 225;
+  --slate-400-rgb: 148 163 184;
+  --slate-500-rgb: 100 116 139;
+
+  background: var(--color-navy-950);
+  color: var(--color-slate-300);
+  font-family: var(--funnel-font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+}
+
+.funnel-root.funnel-light {
+  --foreground: 252 35% 16%;
+  --color-navy-950: #ffffff;
+  --color-navy-900: #f8f7ff;
+  --color-navy-800: #f0eef8;
+  --color-navy-700: #d8d5e8;
+  --color-navy-600: #a9a3c0;
+  --color-slate-300: #1e1b3a;
+  --color-slate-400: #4a4568;
+  --color-slate-500: #6b6589;
+  --color-white: #0f172a;
+  --color-foreground: #1e1b3a;
+
+  /* RGB channels – light mode */
+  --navy-950-rgb: 255 255 255;
+  --navy-900-rgb: 248 247 255;
+  --navy-800-rgb: 240 238 248;
+  --navy-700-rgb: 216 213 232;
+  --navy-600-rgb: 169 163 192;
+  --slate-300-rgb: 30 27 58;
+  --slate-400-rgb: 74 69 104;
+  --slate-500-rgb: 107 101 137;
+}
+
+/* Smooth scrolling — only when funnel route is open */
+.funnel-root {
+  scroll-behavior: smooth;
+}
+
+/* ── Scroll-triggered fade-in ── */
+.funnel-root .fade-in-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.funnel-root .fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Staggered children ── */
+.funnel-root .stagger-children > * {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.funnel-root .stagger-children.is-visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
+.funnel-root .stagger-children.is-visible > *:nth-child(2) { transition-delay: 150ms; opacity: 1; transform: translateY(0); }
+.funnel-root .stagger-children.is-visible > *:nth-child(3) { transition-delay: 300ms; opacity: 1; transform: translateY(0); }
+.funnel-root .stagger-children.is-visible > *:nth-child(4) { transition-delay: 450ms; opacity: 1; transform: translateY(0); }
+.funnel-root .stagger-children.is-visible > *:nth-child(5) { transition-delay: 600ms; opacity: 1; transform: translateY(0); }
+.funnel-root .stagger-children.is-visible > *:nth-child(6) { transition-delay: 750ms; opacity: 1; transform: translateY(0); }
+.funnel-root .stagger-children.is-visible > *:nth-child(7) { transition-delay: 900ms; opacity: 1; transform: translateY(0); }
+.funnel-root .stagger-children.is-visible > *:nth-child(8) { transition-delay: 1050ms; opacity: 1; transform: translateY(0); }
+
+/* ── FAQ accordion ── */
+.funnel-root .accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-out;
+}
+.funnel-root .accordion-content.is-open {
+  grid-template-rows: 1fr;
+}
+.funnel-root .accordion-content > div {
+  overflow: hidden;
+}
+
+/* ── Gradient text ── */
+.funnel-root .gradient-text {
+  background: linear-gradient(135deg, var(--color-brand-blue), var(--color-brand-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glow button ── */
+.funnel-root .btn-glow::selection,
+.funnel-root .btn-glow *::selection {
+  background: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+.funnel-root .btn-glow {
+  box-shadow: 0 2px 12px rgba(106, 56, 194, 0.25), 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.funnel-root .btn-glow:hover {
+  box-shadow: 0 4px 20px rgba(106, 56, 194, 0.35), 0 2px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+.funnel-root.funnel-light .btn-glow {
+  box-shadow: 0 2px 12px rgba(106, 56, 194, 0.15), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.funnel-root.funnel-light .btn-glow:hover {
+  box-shadow: 0 4px 20px rgba(106, 56, 194, 0.25), 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Light card surface ── */
+.funnel-root.funnel-light .card-surface {
+  box-shadow:
+    0 1px 2px rgba(106, 56, 194, 0.03),
+    0 4px 16px rgba(106, 56, 194, 0.06),
+    0 12px 40px rgba(106, 56, 194, 0.04);
+}
+.funnel-root.funnel-light .sticky-header {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Cookie banner ── */
+.funnel-root .cookie-banner {
+  transform: translateY(100%);
+  transition: transform 0.4s ease-out;
+}
+.funnel-root .cookie-banner.is-visible {
+  transform: translateY(0);
+}
+.funnel-root.funnel-light .cookie-banner {
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Glassmorphism card ── */
+.funnel-root .glass-card {
+  background: rgba(15, 22, 41, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.funnel-root.funnel-light .glass-card {
+  background: #ffffff;
+  backdrop-filter: none;
+  border: 1px solid rgba(106, 56, 194, 0.08);
+  box-shadow:
+    0 1px 2px rgba(106, 56, 194, 0.03),
+    0 4px 16px rgba(106, 56, 194, 0.06);
+}
+
+/* ── Card hover ── */
+.funnel-root .card-hover {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.funnel-root .card-hover:hover {
+  transform: translateY(-4px);
+}
+.funnel-root.funnel-light .card-hover:hover {
+  box-shadow:
+    0 4px 12px rgba(106, 56, 194, 0.06),
+    0 16px 48px rgba(106, 56, 194, 0.1);
+}
+
+/* ── Scroll-reveal directional ── */
+.funnel-root .reveal-left  { opacity: 0; transform: translateX(-50px); transition: all 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.funnel-root .reveal-right { opacity: 0; transform: translateX(50px);  transition: all 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.funnel-root .reveal-left.is-visible,
+.funnel-root .reveal-right.is-visible { opacity: 1; transform: translateX(0); }
+.funnel-root .reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.funnel-root .reveal-scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Hero gradient & light overrides ── */
+.funnel-root.funnel-light .hero-gradient {
+  background: linear-gradient(to bottom, #f0ecff 0%, #f5f2ff 30%, #faf9ff 60%, #ffffff 100%);
+}
+.funnel-root.funnel-light .hero-blob { opacity: 0.4; }
+.funnel-root.funnel-light .section-alt { background: #f8f7ff; }
+.funnel-root.funnel-light .glass-card button:hover { background: rgba(106, 56, 194, 0.02); }
+
+/* ── Before/After light overrides ── */
+.funnel-root.funnel-light .before-tile {
+  border-color: rgba(248, 113, 113, 0.12) !important;
+  box-shadow: 0 0 8px rgba(248, 113, 113, 0.05), 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+}
+.funnel-root.funnel-light .after-card {
+  border-color: rgba(45, 129, 247, 0.12) !important;
+  box-shadow: 0 0 12px rgba(45, 129, 247, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* ── Section divider ── */
+.funnel-root .section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(106, 56, 194, 0.15), transparent);
+}
+
+/* ── Mobile sticky CTA bottom padding ── */
+@media (max-width: 767px) {
+  .funnel-root main { padding-bottom: 72px; }
+}
+
+/* ── Qualification overlay fade ── */
+@keyframes funnel-overlay-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes funnel-overlay-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+.funnel-root .overlay-enter { animation: funnel-overlay-fade-in 0.25s ease-out forwards; }
+.funnel-root .overlay-exit  { animation: funnel-overlay-fade-out 0.2s ease-in forwards; }
+
+/* ── Audit panel entrance ── */
+@keyframes funnel-panel-scale-in {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.funnel-root .audit-panel {
+  animation: funnel-panel-scale-in 0.3s ease-out forwards;
+  box-shadow: 0 0 60px rgba(106, 56, 194, 0.08), 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Step slide transitions ── */
+@keyframes funnel-slide-in-right {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes funnel-slide-in-left {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.funnel-root .step-forward { animation: funnel-slide-in-right 0.3s ease-out forwards; }
+.funnel-root .step-backward { animation: funnel-slide-in-left 0.3s ease-out forwards; }
+
+/* Note: AuditQualificationOverlay renders portal-style at document root.
+   Its inner step-forward/-backward elements live OUTSIDE .funnel-root.
+   Add un-scoped fallbacks so animations still apply. */
+.step-forward { animation: funnel-slide-in-right 0.3s ease-out forwards; }
+.step-backward { animation: funnel-slide-in-left 0.3s ease-out forwards; }
+.overlay-enter { animation: funnel-overlay-fade-in 0.25s ease-out forwards; }
+.audit-panel { animation: funnel-panel-scale-in 0.3s ease-out forwards; }
+
+/* ── Option card select pulse ── */
+@keyframes funnel-option-pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+.option-pulse { animation: funnel-option-pulse 0.3s ease-out; }
+
+/* ── Confirmation check ── */
+@keyframes funnel-check-appear {
+  0%   { opacity: 0; transform: scale(0.5); }
+  60%  { transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.check-animate { animation: funnel-check-appear 0.5s ease-out forwards; }
+
+/* ── Integrations carousel ── */
+@keyframes funnel-carousel-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% / 3)); }
+}
+@keyframes funnel-carousel-scroll-reverse {
+  0%   { transform: translateX(calc(-100% / 3)); }
+  100% { transform: translateX(0); }
+}
+.funnel-root .integration-carousel {
+  animation: funnel-carousel-scroll 35s linear infinite;
+}
+.funnel-root .integration-carousel-reverse {
+  animation: funnel-carousel-scroll-reverse 40s linear infinite;
+}
+.funnel-root .integration-carousel:hover,
+.funnel-root .integration-carousel-reverse:hover {
+  animation-play-state: paused;
+}
+.funnel-root .carousel-fade-left {
+  background: linear-gradient(to right, var(--color-navy-900), transparent);
+}
+.funnel-root .carousel-fade-right {
+  background: linear-gradient(to left, var(--color-navy-900), transparent);
+}
+
+/* ── Hero floating icons ── */
+@keyframes hero-icon-float {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(4px, -8px); }
+  50%  { transform: translate(0, -14px); }
+  75%  { transform: translate(-4px, -6px); }
+  100% { transform: translate(0, 0); }
+}
+.funnel-root .hero-icon-card {
+  box-shadow:
+    0 0 20px rgba(106, 56, 194, 0.12),
+    0 0 40px rgba(45, 129, 247, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Before/After pulses ── */
+@keyframes line-glow-pulse {
+  0%, 100% { opacity: 0.7; }
+  50%      { opacity: 1; }
+}
+@keyframes logo-breathe {
+  0%, 100% { box-shadow: 0 0 24px rgba(106, 56, 194, 0.3), 0 0 48px rgba(106, 56, 194, 0.12), 0 4px 12px rgba(0, 0, 0, 0.15); }
+  50%      { box-shadow: 0 0 32px rgba(106, 56, 194, 0.45), 0 0 60px rgba(45, 129, 247, 0.12), 0 4px 12px rgba(0, 0, 0, 0.15); }
+}
+@keyframes after-card-pulse {
+  0%, 100% { box-shadow: 0 0 16px rgba(45, 129, 247, 0.1), 0 0 32px rgba(45, 129, 247, 0.05), 0 4px 16px rgba(0, 0, 0, 0.08); }
+  50%      { box-shadow: 0 0 22px rgba(45, 129, 247, 0.15), 0 0 40px rgba(45, 129, 247, 0.07), 0 4px 16px rgba(0, 0, 0, 0.08); }
+}
+
+/* ── Icon dark/light mode switching ── */
+.funnel-root .icon-light-only { display: none; }
+.funnel-root .icon-dark-only  { display: block; }
+.funnel-root.funnel-light .icon-light-only { display: block; }
+.funnel-root.funnel-light .icon-dark-only  { display: none; }
+
+/* ── Body scroll lock for overlay (unscoped on purpose) ── */
+body.overlay-open {
+  overflow: hidden;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .funnel-root *,
+  .funnel-root *::before,
+  .funnel-root *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

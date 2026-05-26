@@ -1,0 +1,19 @@
+project_id = "ybikjafjdgsvcdhrxiqn"
+
+[functions.insert-article]
+verify_jwt = false
+
+[functions.update-article-body]
+verify_jwt = false
+
+[functions.update-article-author]
+verify_jwt = false
+
+[functions.update-article-content]
+verify_jwt = false
+
+[functions.insert-automation-article]
+verify_jwt = false
+
+[functions.update-automation-thumbnail]
+verify_jwt = false
